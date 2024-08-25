@@ -12,6 +12,47 @@ import os
 
 app = Flask(__name__)
 CORS(app)
+data = {
+    'channel': {
+        'title': '网站名称',
+        'description': '网站描述',
+        'link': '网站链接',
+        'image_url': '网站logo'
+    },
+    'items': [
+        {
+            'title': 'item_title',
+            'link': 'https://example.com/12',
+            'guid': 'https://example.com/12',
+            'description': '',
+            'pub_date': '2024-04-29 00:00:00'  # 日期字符串，需符合预期格式
+        }
+    ]
+}
+lis = [
+    {
+        "url": "https://www.douban.com/gallery/",
+        "origin": "豆瓣-话题广场",
+        "link": "https://www.douban.com/gallery/",
+        "favicon": "https://www.douban.com/favicon.ico"
+    }, {
+        "url": "https://sspai.com/api/v1/article/tag/special/page/get?limit=10&offset=0&created_at={}&tag=%E6%95%88%E7%8E%87%E6%8A%80%E5%B7%A7&search_type=1",
+        "origin": "少数派-效率技巧",
+        "link": "https://sspai.com/",
+        "favicon": "https://cdn-static.sspai.com/favicon/sspai.ico"
+    }, {
+        "url": "https://sspai.com/api/v1/article/tag/page/get?limit=10&offset=0&created_at={}&tag=%E7%94%9F%E6%B4%BB%E6%96%B9%E5%BC%8F&search_type=1",
+        "origin": "少数派-生活方式",
+        "link": "https://sspai.com/",
+        "favicon": "https://cdn-static.sspai.com/favicon/sspai.ico"
+    }, {
+        "url": "https://weekly.tw93.fun/rss.xml",
+        "origin": "潮流周刊",
+        "link": "https://weekly.tw93.fun/",
+        "favicon": "https://gw.alicdn.com/imgextra/i2/O1CN01m9YYjS1QBeW5DOm3I_!!6000000001938-2-tps-400-400.png"
+    }
+]
+
 
 @app.route('/content/<route_name>', methods=['GET'])
 @cross_origin(origin='*', headers=['Content-Type'])
@@ -147,44 +188,4 @@ def create_xml(data, website_info):
 
 
 if __name__ == '__main__':
-    data = {
-        'channel': {
-            'title': '网站名称',
-            'description': '网站描述',
-            'link': '网站链接',
-            'image_url': '网站logo'
-        },
-        'items': [
-            {
-                'title': 'item_title',
-                'link': 'https://example.com/12',
-                'guid': 'https://example.com/12',
-                'description': '',
-                'pub_date': '2024-04-29 00:00:00'  # 日期字符串，需符合预期格式
-            }
-        ]
-    }
-    lis = [
-        {
-            "url": "https://www.douban.com/gallery/",
-            "origin": "豆瓣-话题广场",
-            "link": "https://www.douban.com/gallery/",
-            "favicon": "https://www.douban.com/favicon.ico"
-        }, {
-            "url": "https://sspai.com/api/v1/article/tag/special/page/get?limit=10&offset=0&created_at={}&tag=%E6%95%88%E7%8E%87%E6%8A%80%E5%B7%A7&search_type=1",
-            "origin": "少数派-效率技巧",
-            "link": "https://sspai.com/",
-            "favicon": "https://cdn-static.sspai.com/favicon/sspai.ico"
-        }, {
-            "url": "https://sspai.com/api/v1/article/tag/page/get?limit=10&offset=0&created_at={}&tag=%E7%94%9F%E6%B4%BB%E6%96%B9%E5%BC%8F&search_type=1",
-            "origin": "少数派-生活方式",
-            "link": "https://sspai.com/",
-            "favicon": "https://cdn-static.sspai.com/favicon/sspai.ico"
-        }, {
-            "url": "https://weekly.tw93.fun/rss.xml",
-            "origin": "潮流周刊",
-            "link": "https://weekly.tw93.fun/",
-            "favicon": "https://gw.alicdn.com/imgextra/i2/O1CN01m9YYjS1QBeW5DOm3I_!!6000000001938-2-tps-400-400.png"
-        }
-    ]
     app.run(host="0.0.0.0", debug=True, port=4010)
